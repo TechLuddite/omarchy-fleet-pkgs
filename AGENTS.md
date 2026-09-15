@@ -44,6 +44,10 @@ A recipe at `pkgbuilds/omarchy-fleet/`, with a `PKGBUILD` and a `.omarchy/packag
 
 The ISO side is already prepared for it. `builder/build-iso.sh` in the ISO fork publishes one list of Omarchy packages with an append point, so shipping this one is `OMARCHY_EXTRA_PACKAGES=omarchy-fleet` on the build rather than an edit in four places.
 
+**This recipe is now the fix for a live defect rather than a tidier arrangement.** Until it exists, a test machine gets the fleet code inside `omarchy-dev`, which is the name upstream publishes on its edge channel and the channel the installed system points at. The generated package version is a commit count, so a build from the runtime fork loses to upstream's whenever upstream's development branch is ahead of the branch point, which is the ordinary state of a mirror. Two machines were built and updated on 2026-09-15 and one `pacman -Syu` replaced the runtime package and removed every fleet command, the menu entry and the install leaf, with no warning and nothing left in the package cache to go back to.
+
+A package named `omarchy-fleet` cannot be replaced that way, because upstream publishes nothing by that name. What the recipe does not settle is where a fleet machine's runtime package comes from, since `omarchy-dev` itself keeps losing the same race. That question belongs with package signing and with whether a self-hosted instance can serve as an adopter's own channel.
+
 ## Repository settings that are deliberate
 
 GitHub Actions is disabled for this repository. Upstream ships four workflows here, three of which are maintainer cron jobs on six-hour schedules that sync AUR, rebuild triggers and upstream releases. On a mirror they would run every six hours, expect credentials and a publishing role this repository does not have, and fail or do something unwanted. Re-enable Actions only after deciding which of those four should exist here, and switch the three cron jobs off individually rather than turning everything on.
