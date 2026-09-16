@@ -18,6 +18,12 @@ git push origin upstream/master:master
 
 Upstream moves fast here. Within a day of mirroring, `master` was twenty-one commits ahead. Sync before any rebase rather than after.
 
+Opening a pull request needs both ends named. `gh` takes a fork's parent as the default base, and this clone carries an `upstream` remote, so a bare `gh pr create` aims at `omacom/omarchy-pkgs` rather than at this fork. It has already done so once in the runtime repository and failed only because there were no commits between the two.
+
+```bash
+gh pr create --repo TechLuddite/omarchy-fleet-pkgs --base fleet-main --head <branch>
+```
+
 The runtime repository is the sibling checkout `../omarchy-fleet`, mirroring `omacom/omarchy`. Its `agents/skills/fleet.md` carries the fleet design and is worth reading before changing anything here.
 
 ## Signed commits
