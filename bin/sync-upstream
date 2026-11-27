@@ -757,6 +757,10 @@ EOF
   mkdir -p "$one_root"
   cp -a "$BUILD_ROOT/pkgbuilds/1password" "$one_root/1password"
   one_dir="$one_root/1password"
+  # Start the copy below the fixture version. The checked-in recipe moves with
+  # every upstream sync, and once it reached the fixture version there was
+  # nothing left to update and this block failed.
+  sed -i 's/^pkgver=.*/pkgver=8.0.0/' "$one_dir/PKGBUILD"
   debian_fetch_packages() {
     printf 'Package: 1password\nVersion: %s\n' "$one_version"
   }

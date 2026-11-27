@@ -1,0 +1,14 @@
+{
+  "accepted": [
+    {
+      "rule": "S3.hidden-in-file",
+      "path": "pkgbuilds/cursor-cli/Cursor-TOS",
+      "reason": "Vendor terms of service shipped unmodified with the package. Line 7 holds one zero-width character from the vendor's text."
+    },
+    {
+      "rule": "S3.hidden-in-file",
+      "path": "pkgbuilds/cursor-cli/LICENSES/LicenseRef-Cursor.txt",
+      "reason": "The same vendor licence text, shipped unmodified. Line 7 holds one zero-width character from the vendor's text."
+    }
+  ]
+}
